@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/**
+ * @updated 25.08.15
+ * @see  https://developer.mozilla.org/docs/Web/CSS/@charset
+ * @link https://developer.mozilla.org/docs/Web/CSS/@media
+ */
+ 
+/* ========== XS ========== */
+@media (width <= 580px){
+   /* CSS */
+}
+
+/* ========== SM ========== */
+@media (580px < width <= 770px){
+   /* CSS */
+}
+
+/* ========== MD ========== */
+@media (770px < width <= 980px){
+   /* CSS */
+}
+
+/* ========== LG ========== */
+@media (980px < width <= 1200px){
+   /* CSS */
+}
+
+/* ========== XL ========== */
+@media (width > 1200px){
+   /* CSS */
+}

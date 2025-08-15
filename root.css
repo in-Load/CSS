@@ -1,0 +1,123 @@
+@charset "UTF-8";
+/**
+ * @updated 25.08.15
+ * @see  https://developer.mozilla.org/docs/Web/CSS/@charset
+ * @link https://developer.mozilla.org/docs/Web/CSS/:root
+ * @link https://developer.mozilla.org/docs/Web/CSS/::backdrop
+ * @link https://developer.mozilla.org/docs/Web/CSS/--*
+ */
+:root, ::backdrop {
+    /* ========== SCALES ========== */
+    --mini :    0.2500;
+    --tiny :    0.4375;
+    --small :   0.6250;
+    --medium :  0.8125;
+    --normal :  1.0000;
+    --large :   1.2500;
+    --big :     1.7500;
+    --huge :    2.2500;
+    --massive : 2.7500;
+    
+    /* ========== TEXT ========== */
+    --EM :  1em;
+    --REM : 1rem;
+
+    --mini_EM :     calc(var(--EM) * var(--mini));
+    --tiny_EM :     calc(var(--EM) * var(--tiny));
+    --small_EM :    calc(var(--EM) * var(--small));
+    --medium_EM :   calc(var(--EM) * var(--medium));
+    --normal_EM :   calc(var(--EM) * var(--normal));
+    --large_EM :    calc(var(--EM) * var(--large));
+    --big_EM :      calc(var(--EM) * var(--big));
+    --huge_EM :     calc(var(--EM) * var(--huge));
+    --massive_EM :  calc(var(--EM) * var(--massive));
+    
+    --mini_REM :    calc(var(--REM) * var(--mini));
+    --tiny_REM :    calc(var(--REM) * var(--tiny));
+    --small_REM :   calc(var(--REM) * var(--small));
+    --medium_REM :  calc(var(--REM) * var(--medium));
+    --normal_REM :  calc(var(--REM) * var(--normal));
+    --large_REM :   calc(var(--REM) * var(--large));
+    --big_REM :     calc(var(--REM) * var(--big));
+    --huge_REM :    calc(var(--REM) * var(--huge));
+    --massive_REM : calc(var(--REM) * var(--massive));
+    
+    /* ========== TIME ========== */
+    --time:1.5s;
+
+    --mini_S :     calc(var(--time) * var(--mini));
+    --tiny_S :     calc(var(--time) * var(--tiny));
+    --small_S :    calc(var(--time) * var(--small));
+    --medium_S :   calc(var(--time) * var(--medium));
+    --normal_S :   calc(var(--time) * var(--normal));
+    --large_S :    calc(var(--time) * var(--large));
+    --big_S :      calc(var(--time) * var(--big));
+    --huge_S :     calc(var(--time) * var(--huge));
+    --massive_S :  calc(var(--time) * var(--massive));
+
+    /* ========== CONTAINER ========== */
+    --container :       calc(100% - var(--massive_EM));
+    --container-max :   60rem;
+
+    /* ========== COLORS ========== */
+    --dark  :     8   8   8;
+    --light :   248 249 250;
+    
+    --black :     0   0   0;
+    --white :   255 255 255;
+    
+    --system    : 102  51 153; /* PURPLE */
+    --info      :   0 153 255; /* BLUE */
+    --success   :  18 154  79; /* GREEN */
+    --warning   : 255 140   0; /* ORANGE */
+    --error     : 247  40  72; /* RED */
+    
+    --mode-bgc : var(--light);
+    --mode-color : var(--dark);
+}
+
+/**
+* @link https://developer.mozilla.org/docs/Web/CSS/@media/prefers-color-scheme
+*/
+@media (prefers-color-scheme:light) {
+    html:not([inverted]) {
+        --dark  :     8   8   8;
+        --light :   248 249 250;
+        --black :     0   0   0;
+        --white :   255 255 255;
+    }
+}
+@media (prefers-color-scheme:dark) {
+    html:not([inverted]) {
+        --dark  :   248 249 250;
+        --light :     8   8   8;
+        --black :   255 255 255;
+        --white :     0   0   0;
+    }
+}
+
+/**
+ * @link https://developer.mozilla.org/docs/Web/CSS/@media/prefers-reduced-motion
+ */
+@media (prefers-reduced-motion:reduce) { * { animation:none !important; } }
+
+
+/* [debug]:not([debug="content"]), [debug]:not([debug="content"])::before, [debug]:not([debug="content"])::after,
+[debug] *, [debug] *::before, [debug] *::after {
+    --debug:0.5em;
+    --debug-color : 128 0 128;
+
+    outline:calc(var(--debug) * 0.2) dashed rgb(var(--debug-color) / 0.3);
+
+    background-color: rgb(var(--debug-color) / 0.15);
+
+    padding-top:var(--innT, var(--debug));
+    padding-right:var(--innR, var(--debug));
+    padding-bottom:var(--innB, var(--debug));
+    padding-left:var(--innL, var(--debug));
+}
+
+[debug] > *, [debug] > *::before, [debug] > *::after { --debug-color : 0 103 128; }
+[debug] > * > *, [debug] > * > *::before, [debug] > * > *::after { --debug-color : 37 128 0; }
+[debug] > * > * > *, [debug] > * > * > *::before, [debug] > * > * > *::after { --debug-color : 128 115 0; }
+[debug] > * > * > * > *, [debug] > * > * > * > *::before, [debug] > * > * > * > *::after { --debug-color : 128 33 0; } */
