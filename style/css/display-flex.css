@@ -1,0 +1,614 @@
+@charset "UTF-8";
+/**
+ * @updated 25.08.12
+ */
+
+:root {
+    --EM  : 1em;
+    --REM : 1rem;
+    --gap : var(--REM);
+    
+    --level0 : calc(var(--gap) * 0);
+    --level1 : calc(var(--gap) * var(--normal));
+    --level2 : calc(var(--level1) * var(--big));
+    --level3 : calc(var(--level2) * var(--big));
+    --level4 : calc(var(--level3) * var(--big));
+
+    /* SCALES */
+    --mini :    0.2500;
+    --tiny :    0.4375;
+    --small :   0.6250;
+    --medium :  0.8125;
+    --normal :  1.0000;
+    --large :   1.2500;
+    --big :     1.7500;
+    --huge :    2.2500;
+    --massive : 2.7500;
+}
+
+/* ========== CONTAINER ========== */
+.df {
+    --columns:var(--inherit-column, 12);
+    --display:flex;
+
+    display:var(--display);
+    
+    --flex-direction:row;
+    --flex-wrap:nowrap;
+    --align-content:normal;
+    --justify-content:normal;
+    --align-items:normal;
+    
+    flex-direction:var(--flex-direction);
+    flex-wrap:var(--flex-wrap);
+    align-content:var(--align-content);
+    justify-content:var(--justify-content);
+    align-items:var(--align-items);
+    
+    --row-gap-level:var(--level0);
+    --column-gap-level:var(--level0);
+    
+    --row-gap:var(--inherit-row-gap-level,var(--row-gap-level));
+    --column-gap:var(--inherit-column-gap-level,var(--column-gap-level));
+    
+    row-gap:var(--row-gap);
+    column-gap:var(--column-gap);
+}
+.df.inline { --display:inline-flex; }
+
+/* ========== GAP ========== */
+.df:is(.rg-0, .gap-0) { --row-gap-level:var(--level0); }
+.df:is(.rg-1, .gap-1) { --row-gap-level:var(--level1); }
+.df:is(.rg-2, .gap-2) { --row-gap-level:var(--level2); }
+.df:is(.rg-3, .gap-3) { --row-gap-level:var(--level3); }
+.df:is(.rg-4, .gap-4) { --row-gap-level:var(--level4); }
+
+.df:is(.cg-0, .gap-0) { --column-gap-level:var(--level0); }
+.df:is(.cg-1, .gap-1) { --column-gap-level:var(--level1); }
+.df:is(.cg-2, .gap-2) { --column-gap-level:var(--level2); }
+.df:is(.cg-3, .gap-3) { --column-gap-level:var(--level3); }
+.df:is(.cg-4, .gap-4) { --column-gap-level:var(--level4); }
+
+/* ========== DIRECTION ========== */
+.df.fd-col { --flex-direction:column; }
+.df.fd_col { --flex-direction:column-reverse; }
+.df.fd_row { --flex-direction:row-reverse; }
+
+/* ========== WRAPPING ========== */
+.df.fw-wrap { --flex-wrap:wrap; }
+.df.fw_wrap { --flex-wrap:wrap-reverse; }
+
+/* ========== CONTENT ========== */
+.df.ac-center   { --align-content:center; }
+.df.ac-start    { --align-content:start; }
+.df.ac-end      { --align-content:end; }
+.df.ac_start    { --align-content:flex-start; }
+.df.ac_end      { --align-content:flex-end; }
+.df.ac-baseline { --align-content:baseline; }
+.df.ac-line     { --align-content:first baseline; }
+.df.ac_line     { --align-content:last baseline; }
+.df.ac-betwenn  { --align-content:space-between; }
+.df.ac-around   { --align-content:space-around; }
+.df.ac-evenly   { --align-content:space-evenly; }
+.df.ac-stretch  { --align-content:stretch; }
+.df.ac-safe     { --align-content:safe center; }
+.df.ac_safe     { --align-content:unsafe center; }
+
+/* ========== JUSTIFY ========== */
+.df.jc-center   { --justify-content:center; }
+.df.jc-start    { --justify-content:start; }
+.df.jc-end      { --justify-content:end; }
+.df.jc_start    { --justify-content:flex-start; }
+.df.jc_end      { --justify-content:flex-end; }
+.df.jc-left     { --justify-content:left; }
+.df.jc-right    { --justify-content:right; }
+.df.jc-between  { --justify-content:space-between; }
+.df.jc-around   { --justify-content:space-around; }
+.df.jc-evenly   { --justify-content:space-evenly; }
+.df.jc-stretch  { --justify-content:stretch; }
+.df.jc-safe     { --justify-content:safe center; }
+.df.jc_safe     { --justify-content:unsafe center; }
+
+/* ========== ITEM ========== */
+.df.ai-center   { --align-items:center; }
+.df.ai-start    { --align-items:start; }
+.df.ai-end      { --align-items:end; }
+.df.ai_start    { --align-items:flex-start; }
+.df.ai_end      { --align-items:flex-end; }
+.df.ai-self     { --align-items:self-start; }
+.df.ai_self     { --align-items:self-end; }
+.df.ai-line     { --align-items:first baseline; }
+.df.ai_line     { --align-items:last baseline; }
+.df.ai-stretch  { --align-items:stretch; }
+.df.ai-safe     { --align-items:safe center; }
+.df.ai_safe     { --align-items:unsafe center; }
+
+/* ========== COLUMN ========== */
+.df > * {
+    flex-grow:var(--flex-grow);
+    flex-shrink:var(--flex-shrink);
+    flex-basis:var(--flex-basis);
+}
+.df > [class*="col-"], [class*="cols-"] > * {
+    --flex-basis:calc((((100% + var(--column-gap)) / var(--columns)) * var(--column)) - var(--column-gap));
+}
+.df > [class*="col-"] { --flex-grow:0; --flex-shrink:0; }
+
+/* ========== COLUMNS SIZE ========== */
+.cols-full > *, .df > .col-full { --flex-basis:100%; }
+.cols-fill > *, .df > .col-fill { --flex-grow:1; --flex-shrink:1; --flex-basis:0; }
+.cols-auto > *, .df > .col-auto { --flex-grow:0; --flex-shrink:0; --flex-basis:auto; }
+
+.cols-1 > *,     .df > .col-1   { --column:1; }
+.cols-2 > *,     .df > .col-2   { --column:2; }
+.cols-3 > *,     .df > .col-3   { --column:3; }
+.cols-4 > *,     .df > .col-4   { --column:4; }
+.cols-5 > *,     .df > .col-5   { --column:5; }
+.cols-6 > *,     .df > .col-6   { --column:6; }
+.cols-7 > *,     .df > .col-7   { --column:7; }
+.cols-8 > *,     .df > .col-8   { --column:8; }
+.cols-9 > *,     .df > .col-9   { --column:9; }
+.cols-10 > *,    .df > .col-10  { --column:10; }
+.cols-11 > *,    .df > .col-11  { --column:11; }
+.cols-12 > *,    .df > .col-12  { --column:12; }
+
+
+/* ========== XL ========== */
+@media (width > 1200px){
+    /* ========== CONTAINER ========== */
+    .xl\:inline { --display:inline-flex; }
+    .xl\:dnone { display:none; }
+
+    /* ========== GAP ========== */
+    .df:is(.xl\:rg-0, .xl\:gap-0) { --row-gap-level:var(--level0); }
+    .df:is(.xl\:rg-1, .xl\:gap-1) { --row-gap-level:var(--level1); }
+    .df:is(.xl\:rg-2, .xl\:gap-2) { --row-gap-level:var(--level2); }
+    .df:is(.xl\:rg-3, .xl\:gap-3) { --row-gap-level:var(--level3); }
+    .df:is(.xl\:rg-4, .xl\:gap-4) { --row-gap-level:var(--level4); }
+
+    .df:is(.xl\:cg-0, .xl\:gap-0) { --column-gap-level:var(--level0); }
+    .df:is(.xl\:cg-1, .xl\:gap-1) { --column-gap-level:var(--level1); }
+    .df:is(.xl\:cg-2, .xl\:gap-2) { --column-gap-level:var(--level2); }
+    .df:is(.xl\:cg-3, .xl\:gap-3) { --column-gap-level:var(--level3); }
+    .df:is(.xl\:cg-4, .xl\:gap-4) { --column-gap-level:var(--level4); }
+
+    /* ========== DIRECTION ========== */
+    .xl\:fd-col { --flex-direction:column; }
+    .xl\:fd_col { --flex-direction:column-reverse; }
+    .xl\:fd_row { --flex-direction:row-reverse; }
+
+    /* ========== WRAPPING ========== */
+    .xl\:fw-wrap { --flex-wrap:wrap; }
+    .xl\:fw_wrap { --flex-wrap:wrap-reverse; }
+
+    /* ========== CONTENT ========== */
+    .xl\:ac-center   { --align-content:center; }
+    .xl\:ac-start    { --align-content:start; }
+    .xl\:ac-end      { --align-content:end; }
+    .xl\:ac_start    { --align-content:flex-start; }
+    .xl\:ac_end      { --align-content:flex-end; }
+    .xl\:ac-baseline { --align-content:baseline; }
+    .xl\:ac-line     { --align-content:first baseline; }
+    .xl\:ac_line     { --align-content:last baseline; }
+    .xl\:ac-betwenn  { --align-content:space-between; }
+    .xl\:ac-around   { --align-content:space-around; }
+    .xl\:ac-evenly   { --align-content:space-evenly; }
+    .xl\:ac-stretch  { --align-content:stretch; }
+    .xl\:ac-safe     { --align-content:safe center; }
+    .xl\:ac_safe     { --align-content:unsafe center; }
+
+    /* ========== JUSTIFY ========== */
+    .xl\:jc-center   { --justify-content:center; }
+    .xl\:jc-start    { --justify-content:start; }
+    .xl\:jc-end      { --justify-content:end; }
+    .xl\:jc_start    { --justify-content:flex-start; }
+    .xl\:jc_end      { --justify-content:flex-end; }
+    .xl\:jc-left     { --justify-content:left; }
+    .xl\:jc-right    { --justify-content:right; }
+    .xl\:jc-between  { --justify-content:space-between; }
+    .xl\:jc-around   { --justify-content:space-around; }
+    .xl\:jc-evenly   { --justify-content:space-evenly; }
+    .xl\:jc-stretch  { --justify-content:stretch; }
+    .xl\:jc-safe     { --justify-content:safe center; }
+    .xl\:jc_safe     { --justify-content:unsafe center; }
+
+    /* ========== ITEM ========== */
+    .xl\:ai-center   { --align-items:center; }
+    .xl\:ai-start    { --align-items:start; }
+    .xl\:ai-end      { --align-items:end; }
+    .xl\:ai_start    { --align-items:flex-start; }
+    .xl\:ai_end      { --align-items:flex-end; }
+    .xl\:ai-self     { --align-items:self-start; }
+    .xl\:ai_self     { --align-items:self-end; }
+    .xl\:ai-line     { --align-items:first baseline; }
+    .xl\:ai_line     { --align-items:last baseline; }
+    .xl\:ai-stretch  { --align-items:stretch; }
+    .xl\:ai-safe     { --align-items:safe center; }
+    .xl\:ai_safe     { --align-items:unsafe center; }
+        
+    /* ========== COLUMNS SIZE ========== */
+    .xl\:cols-full > *, .df > .xl\:col-full { --flex-basis:100%; }
+    .xl\:cols-fill > *, .df > .xl\:col-fill { --flex-grow:1; --flex-shrink:1; --flex-basis:0; }
+    .xl\:cols-auto > *, .df > .xl\:col-auto { --flex-grow:0; --flex-shrink:0; --flex-basis:auto; }
+
+    .xl\:cols-1 > *,     .df > .xl\:col-1   { --column:1; }
+    .xl\:cols-2 > *,     .df > .xl\:col-2   { --column:2; }
+    .xl\:cols-3 > *,     .df > .xl\:col-3   { --column:3; }
+    .xl\:cols-4 > *,     .df > .xl\:col-4   { --column:4; }
+    .xl\:cols-5 > *,     .df > .xl\:col-5   { --column:5; }
+    .xl\:cols-6 > *,     .df > .xl\:col-6   { --column:6; }
+    .xl\:cols-7 > *,     .df > .xl\:col-7   { --column:7; }
+    .xl\:cols-8 > *,     .df > .xl\:col-8   { --column:8; }
+    .xl\:cols-9 > *,     .df > .xl\:col-9   { --column:9; }
+    .xl\:cols-10 > *,    .df > .xl\:col-10  { --column:10; }
+    .xl\:cols-11 > *,    .df > .xl\:col-11  { --column:11; }
+    .xl\:cols-12 > *,    .df > .xl\:col-12  { --column:12; }
+}
+    
+/* ========== LG ========== */
+@media (980px < width <= 1200px){
+    /* ========== CONTAINER ========== */
+    .lg\:inline { --display:inline-flex; }
+    .lg\:dnone { display:none; }
+    
+    /* ========== GAP ========== */
+    .df:is(.lg\:rg-0, .lg\:gap-0) { --row-gap-level:var(--level0); }
+    .df:is(.lg\:rg-1, .lg\:gap-1) { --row-gap-level:var(--level1); }
+    .df:is(.lg\:rg-2, .lg\:gap-2) { --row-gap-level:var(--level2); }
+    .df:is(.lg\:rg-3, .lg\:gap-3) { --row-gap-level:var(--level3); }
+    .df:is(.lg\:rg-4, .lg\:gap-4) { --row-gap-level:var(--level4); }
+    
+    .df:is(.lg\:cg-0, .lg\:gap-0) { --column-gap-level:var(--level0); }
+    .df:is(.lg\:cg-1, .lg\:gap-1) { --column-gap-level:var(--level1); }
+    .df:is(.lg\:cg-2, .lg\:gap-2) { --column-gap-level:var(--level2); }
+    .df:is(.lg\:cg-3, .lg\:gap-3) { --column-gap-level:var(--level3); }
+    .df:is(.lg\:cg-4, .lg\:gap-4) { --column-gap-level:var(--level4); }
+    
+    /* ========== DIRECTION ========== */
+    .lg\:fd-col { --flex-direction:column; }
+    .lg\:fd_col { --flex-direction:column-reverse; }
+    .lg\:fd_row { --flex-direction:row-reverse; }
+    
+    /* ========== WRAPPING ========== */
+    .lg\:fw-wrap { --flex-wrap:wrap; }
+    .lg\:fw_wrap { --flex-wrap:wrap-reverse; }
+    
+    /* ========== CONTENT ========== */
+    .lg\:ac-center   { --align-content:center; }
+    .lg\:ac-start    { --align-content:start; }
+    .lg\:ac-end      { --align-content:end; }
+    .lg\:ac_start    { --align-content:flex-start; }
+    .lg\:ac_end      { --align-content:flex-end; }
+    .lg\:ac-baseline { --align-content:baseline; }
+    .lg\:ac-line     { --align-content:first baseline; }
+    .lg\:ac_line     { --align-content:last baseline; }
+    .lg\:ac-betwenn  { --align-content:space-between; }
+    .lg\:ac-around   { --align-content:space-around; }
+    .lg\:ac-evenly   { --align-content:space-evenly; }
+    .lg\:ac-stretch  { --align-content:stretch; }
+    .lg\:ac-safe     { --align-content:safe center; }
+    .lg\:ac_safe     { --align-content:unsafe center; }
+    
+    /* ========== JUSTIFY ========== */
+    .lg\:jc-center   { --justify-content:center; }
+    .lg\:jc-start    { --justify-content:start; }
+    .lg\:jc-end      { --justify-content:end; }
+    .lg\:jc_start    { --justify-content:flex-start; }
+    .lg\:jc_end      { --justify-content:flex-end; }
+    .lg\:jc-left     { --justify-content:left; }
+    .lg\:jc-right    { --justify-content:right; }
+    .lg\:jc-between  { --justify-content:space-between; }
+    .lg\:jc-around   { --justify-content:space-around; }
+    .lg\:jc-evenly   { --justify-content:space-evenly; }
+    .lg\:jc-stretch  { --justify-content:stretch; }
+    .lg\:jc-safe     { --justify-content:safe center; }
+    .lg\:jc_safe     { --justify-content:unsafe center; }
+    
+    /* ========== ITEM ========== */
+    .lg\:ai-center   { --align-items:center; }
+    .lg\:ai-start    { --align-items:start; }
+    .lg\:ai-end      { --align-items:end; }
+    .lg\:ai_start    { --align-items:flex-start; }
+    .lg\:ai_end      { --align-items:flex-end; }
+    .lg\:ai-self     { --align-items:self-start; }
+    .lg\:ai_self     { --align-items:self-end; }
+    .lg\:ai-line     { --align-items:first baseline; }
+    .lg\:ai_line     { --align-items:last baseline; }
+    .lg\:ai-stretch  { --align-items:stretch; }
+    .lg\:ai-safe     { --align-items:safe center; }
+    .lg\:ai_safe     { --align-items:unsafe center; }
+        
+    /* ========== COLUMNS SIZE ========== */
+    .lg\:cols-full > *, .df > .lg\:col-full { --flex-basis:100%; }
+    .lg\:cols-fill > *, .df > .lg\:col-fill { --flex-grow:1; --flex-shrink:1; --flex-basis:0; }
+    .lg\:cols-auto > *, .df > .lg\:col-auto { --flex-grow:0; --flex-shrink:0; --flex-basis:auto; }
+
+    .lg\:cols-1 > *,     .df > .lg\:col-1   { --column:1; }
+    .lg\:cols-2 > *,     .df > .lg\:col-2   { --column:2; }
+    .lg\:cols-3 > *,     .df > .lg\:col-3   { --column:3; }
+    .lg\:cols-4 > *,     .df > .lg\:col-4   { --column:4; }
+    .lg\:cols-5 > *,     .df > .lg\:col-5   { --column:5; }
+    .lg\:cols-6 > *,     .df > .lg\:col-6   { --column:6; }
+    .lg\:cols-7 > *,     .df > .lg\:col-7   { --column:7; }
+    .lg\:cols-8 > *,     .df > .lg\:col-8   { --column:8; }
+    .lg\:cols-9 > *,     .df > .lg\:col-9   { --column:9; }
+    .lg\:cols-10 > *,    .df > .lg\:col-10  { --column:10; }
+    .lg\:cols-11 > *,    .df > .lg\:col-11  { --column:11; }
+    .lg\:cols-12 > *,    .df > .lg\:col-12  { --column:12; }
+}
+
+/* ========== MD ========== */
+@media (770px < width <= 980px){
+    /* ========== CONTAINER ========== */
+    .md\:inline { --display:inline-flex; }
+    .md\:dnone { display:none; }
+    
+    /* ========== GAP ========== */
+    .df:is(.md\:rg-0, .md\:gap-0) { --row-gap-level:var(--level0); }
+    .df:is(.md\:rg-1, .md\:gap-1) { --row-gap-level:var(--level1); }
+    .df:is(.md\:rg-2, .md\:gap-2) { --row-gap-level:var(--level2); }
+    .df:is(.md\:rg-3, .md\:gap-3) { --row-gap-level:var(--level3); }
+    .df:is(.md\:rg-4, .md\:gap-4) { --row-gap-level:var(--level4); }
+
+    .df:is(.md\:cg-0, .md\:gap-0) { --column-gap-level:var(--level0); }
+    .df:is(.md\:cg-1, .md\:gap-1) { --column-gap-level:var(--level1); }
+    .df:is(.md\:cg-2, .md\:gap-2) { --column-gap-level:var(--level2); }
+    .df:is(.md\:cg-3, .md\:gap-3) { --column-gap-level:var(--level3); }
+    .df:is(.md\:cg-4, .md\:gap-4) { --column-gap-level:var(--level4); }
+
+    /* ========== DIRECTION ========== */
+    .md\:fd-col { --flex-direction:column; }
+    .md\:fd_col { --flex-direction:column-reverse; }
+    .md\:fd_row { --flex-direction:row-reverse; }
+
+    /* ========== WRAPPING ========== */
+    .md\:fw-wrap { --flex-wrap:wrap; }
+    .md\:fw_wrap { --flex-wrap:wrap-reverse; }
+
+    /* ========== CONTENT ========== */
+    .md\:ac-center   { --align-content:center; }
+    .md\:ac-start    { --align-content:start; }
+    .md\:ac-end      { --align-content:end; }
+    .md\:ac_start    { --align-content:flex-start; }
+    .md\:ac_end      { --align-content:flex-end; }
+    .md\:ac-baseline { --align-content:baseline; }
+    .md\:ac-line     { --align-content:first baseline; }
+    .md\:ac_line     { --align-content:last baseline; }
+    .md\:ac-betwenn  { --align-content:space-between; }
+    .md\:ac-around   { --align-content:space-around; }
+    .md\:ac-evenly   { --align-content:space-evenly; }
+    .md\:ac-stretch  { --align-content:stretch; }
+    .md\:ac-safe     { --align-content:safe center; }
+    .md\:ac_safe     { --align-content:unsafe center; }
+
+    /* ========== JUSTIFY ========== */
+    .md\:jc-center   { --justify-content:center; }
+    .md\:jc-start    { --justify-content:start; }
+    .md\:jc-end      { --justify-content:end; }
+    .md\:jc_start    { --justify-content:flex-start; }
+    .md\:jc_end      { --justify-content:flex-end; }
+    .md\:jc-left     { --justify-content:left; }
+    .md\:jc-right    { --justify-content:right; }
+    .md\:jc-between  { --justify-content:space-between; }
+    .md\:jc-around   { --justify-content:space-around; }
+    .md\:jc-evenly   { --justify-content:space-evenly; }
+    .md\:jc-stretch  { --justify-content:stretch; }
+    .md\:jc-safe     { --justify-content:safe center; }
+    .md\:jc_safe     { --justify-content:unsafe center; }
+
+    /* ========== ITEM ========== */
+    .md\:ai-center   { --align-items:center; }
+    .md\:ai-start    { --align-items:start; }
+    .md\:ai-end      { --align-items:end; }
+    .md\:ai_start    { --align-items:flex-start; }
+    .md\:ai_end      { --align-items:flex-end; }
+    .md\:ai-self     { --align-items:self-start; }
+    .md\:ai_self     { --align-items:self-end; }
+    .md\:ai-line     { --align-items:first baseline; }
+    .md\:ai_line     { --align-items:last baseline; }
+    .md\:ai-stretch  { --align-items:stretch; }
+    .md\:ai-safe     { --align-items:safe center; }
+    .md\:ai_safe     { --align-items:unsafe center; }
+        
+    /* ========== COLUMNS SIZE ========== */
+    .md\:cols-full > *, .df > .md\:col-full { --flex-basis:100%; }
+    .md\:cols-fill > *, .df > .md\:col-fill { --flex-grow:1; --flex-shrink:1; --flex-basis:0; }
+    .md\:cols-auto > *, .df > .md\:col-auto { --flex-grow:0; --flex-shrink:0; --flex-basis:auto; }
+
+    .md\:cols-1 > *,     .df > .md\:col-1   { --column:1; }
+    .md\:cols-2 > *,     .df > .md\:col-2   { --column:2; }
+    .md\:cols-3 > *,     .df > .md\:col-3   { --column:3; }
+    .md\:cols-4 > *,     .df > .md\:col-4   { --column:4; }
+    .md\:cols-5 > *,     .df > .md\:col-5   { --column:5; }
+    .md\:cols-6 > *,     .df > .md\:col-6   { --column:6; }
+    .md\:cols-7 > *,     .df > .md\:col-7   { --column:7; }
+    .md\:cols-8 > *,     .df > .md\:col-8   { --column:8; }
+    .md\:cols-9 > *,     .df > .md\:col-9   { --column:9; }
+    .md\:cols-10 > *,    .df > .md\:col-10  { --column:10; }
+    .md\:cols-11 > *,    .df > .md\:col-11  { --column:11; }
+    .md\:cols-12 > *,    .df > .md\:col-12  { --column:12; }
+}
+
+/* ========== SM ========== */
+@media (580px < width <= 770px){
+    /* ========== CONTAINER ========== */
+    .sm\:inline { --display:inline-flex; }
+    .sm\:dnone { display:none; }
+
+    /* ========== GAP ========== */
+    .df:is(.sm\:rg-0, .sm\:gap-0) { --row-gap-level:var(--level0); }
+    .df:is(.sm\:rg-1, .sm\:gap-1) { --row-gap-level:var(--level1); }
+    .df:is(.sm\:rg-2, .sm\:gap-2) { --row-gap-level:var(--level2); }
+    .df:is(.sm\:rg-3, .sm\:gap-3) { --row-gap-level:var(--level3); }
+    .df:is(.sm\:rg-4, .sm\:gap-4) { --row-gap-level:var(--level4); }
+
+    .df:is(.sm\:cg-0, .sm\:gap-0) { --column-gap-level:var(--level0); }
+    .df:is(.sm\:cg-1, .sm\:gap-1) { --column-gap-level:var(--level1); }
+    .df:is(.sm\:cg-2, .sm\:gap-2) { --column-gap-level:var(--level2); }
+    .df:is(.sm\:cg-3, .sm\:gap-3) { --column-gap-level:var(--level3); }
+    .df:is(.sm\:cg-4, .sm\:gap-4) { --column-gap-level:var(--level4); }
+
+    /* ========== DIRECTION ========== */
+    .sm\:fd-col { --flex-direction:column; }
+    .sm\:fd_col { --flex-direction:column-reverse; }
+    .sm\:fd_row { --flex-direction:row-reverse; }
+
+    /* ========== WRAPPING ========== */
+    .sm\:fw-wrap { --flex-wrap:wrap; }
+    .sm\:fw_wrap { --flex-wrap:wrap-reverse; }
+
+    /* ========== CONTENT ========== */
+    .sm\:ac-center   { --align-content:center; }
+    .sm\:ac-start    { --align-content:start; }
+    .sm\:ac-end      { --align-content:end; }
+    .sm\:ac_start    { --align-content:flex-start; }
+    .sm\:ac_end      { --align-content:flex-end; }
+    .sm\:ac-baseline { --align-content:baseline; }
+    .sm\:ac-line     { --align-content:first baseline; }
+    .sm\:ac_line     { --align-content:last baseline; }
+    .sm\:ac-betwenn  { --align-content:space-between; }
+    .sm\:ac-around   { --align-content:space-around; }
+    .sm\:ac-evenly   { --align-content:space-evenly; }
+    .sm\:ac-stretch  { --align-content:stretch; }
+    .sm\:ac-safe     { --align-content:safe center; }
+    .sm\:ac_safe     { --align-content:unsafe center; }
+
+    /* ========== JUSTIFY ========== */
+    .sm\:jc-center   { --justify-content:center; }
+    .sm\:jc-start    { --justify-content:start; }
+    .sm\:jc-end      { --justify-content:end; }
+    .sm\:jc_start    { --justify-content:flex-start; }
+    .sm\:jc_end      { --justify-content:flex-end; }
+    .sm\:jc-left     { --justify-content:left; }
+    .sm\:jc-right    { --justify-content:right; }
+    .sm\:jc-between  { --justify-content:space-between; }
+    .sm\:jc-around   { --justify-content:space-around; }
+    .sm\:jc-evenly   { --justify-content:space-evenly; }
+    .sm\:jc-stretch  { --justify-content:stretch; }
+    .sm\:jc-safe     { --justify-content:safe center; }
+    .sm\:jc_safe     { --justify-content:unsafe center; }
+
+    /* ========== ITEM ========== */
+    .sm\:ai-center   { --align-items:center; }
+    .sm\:ai-start    { --align-items:start; }
+    .sm\:ai-end      { --align-items:end; }
+    .sm\:ai_start    { --align-items:flex-start; }
+    .sm\:ai_end      { --align-items:flex-end; }
+    .sm\:ai-self     { --align-items:self-start; }
+    .sm\:ai_self     { --align-items:self-end; }
+    .sm\:ai-line     { --align-items:first baseline; }
+    .sm\:ai_line     { --align-items:last baseline; }
+    .sm\:ai-stretch  { --align-items:stretch; }
+    .sm\:ai-safe     { --align-items:safe center; }
+    .sm\:ai_safe     { --align-items:unsafe center; }
+            
+    /* ========== COLUMNS SIZE ========== */
+    .sm\:cols-full > *, .df > .sm\:col-full { --flex-basis:100%; }
+    .sm\:cols-fill > *, .df > .sm\:col-fill { --flex-grow:1; --flex-shrink:1; --flex-basis:0; }
+    .sm\:cols-auto > *, .df > .sm\:col-auto { --flex-grow:0; --flex-shrink:0; --flex-basis:auto; }
+
+    .sm\:cols-1 > *,     .df > .sm\:col-1   { --column:1; }
+    .sm\:cols-2 > *,     .df > .sm\:col-2   { --column:2; }
+    .sm\:cols-3 > *,     .df > .sm\:col-3   { --column:3; }
+    .sm\:cols-4 > *,     .df > .sm\:col-4   { --column:4; }
+    .sm\:cols-5 > *,     .df > .sm\:col-5   { --column:5; }
+    .sm\:cols-6 > *,     .df > .sm\:col-6   { --column:6; }
+    .sm\:cols-7 > *,     .df > .sm\:col-7   { --column:7; }
+    .sm\:cols-8 > *,     .df > .sm\:col-8   { --column:8; }
+    .sm\:cols-9 > *,     .df > .sm\:col-9   { --column:9; }
+    .sm\:cols-10 > *,    .df > .sm\:col-10  { --column:10; }
+    .sm\:cols-11 > *,    .df > .sm\:col-11  { --column:11; }
+    .sm\:cols-12 > *,    .df > .sm\:col-12  { --column:12; }
+}
+
+/* ========== XS ========== */
+@media (width <= 580px){
+    /* ========== CONTAINER ========== */
+    .xs\:inline { --display:inline-flex; }
+    .xs\:dnone { display:none; }
+
+    /* ========== GAP ========== */
+    .df:is(.xs\:rg-0, .xs\:gap-0) { --row-gap-level:var(--level0); }
+    .df:is(.xs\:rg-1, .xs\:gap-1) { --row-gap-level:var(--level1); }
+    .df:is(.xs\:rg-2, .xs\:gap-2) { --row-gap-level:var(--level2); }
+    .df:is(.xs\:rg-3, .xs\:gap-3) { --row-gap-level:var(--level3); }
+    .df:is(.xs\:rg-4, .xs\:gap-4) { --row-gap-level:var(--level4); }
+
+    .df:is(.xs\:cg-0, .xs\:gap-0) { --column-gap-level:var(--level0); }
+    .df:is(.xs\:cg-1, .xs\:gap-1) { --column-gap-level:var(--level1); }
+    .df:is(.xs\:cg-2, .xs\:gap-2) { --column-gap-level:var(--level2); }
+    .df:is(.xs\:cg-3, .xs\:gap-3) { --column-gap-level:var(--level3); }
+    .df:is(.xs\:cg-4, .xs\:gap-4) { --column-gap-level:var(--level4); }
+
+    /* ========== DIRECTION ========== */
+    .xs\:fd-col { --flex-direction:column; }
+    .xs\:fd_col { --flex-direction:column-reverse; }
+    .xs\:fd_row { --flex-direction:row-reverse; }
+
+    /* ========== WRAPPING ========== */
+    .xs\:fw-wrap { --flex-wrap:wrap; }
+    .xs\:fw_wrap { --flex-wrap:wrap-reverse; }
+
+    /* ========== CONTENT ========== */
+    .xs\:ac-center   { --align-content:center; }
+    .xs\:ac-start    { --align-content:start; }
+    .xs\:ac-end      { --align-content:end; }
+    .xs\:ac_start    { --align-content:flex-start; }
+    .xs\:ac_end      { --align-content:flex-end; }
+    .xs\:ac-baseline { --align-content:baseline; }
+    .xs\:ac-line     { --align-content:first baseline; }
+    .xs\:ac_line     { --align-content:last baseline; }
+    .xs\:ac-betwenn  { --align-content:space-between; }
+    .xs\:ac-around   { --align-content:space-around; }
+    .xs\:ac-evenly   { --align-content:space-evenly; }
+    .xs\:ac-stretch  { --align-content:stretch; }
+    .xs\:ac-safe     { --align-content:safe center; }
+    .xs\:ac_safe     { --align-content:unsafe center; }
+
+    /* ========== JUSTIFY ========== */
+    .xs\:jc-center   { --justify-content:center; }
+    .xs\:jc-start    { --justify-content:start; }
+    .xs\:jc-end      { --justify-content:end; }
+    .xs\:jc_start    { --justify-content:flex-start; }
+    .xs\:jc_end      { --justify-content:flex-end; }
+    .xs\:jc-left     { --justify-content:left; }
+    .xs\:jc-right    { --justify-content:right; }
+    .xs\:jc-between  { --justify-content:space-between; }
+    .xs\:jc-around   { --justify-content:space-around; }
+    .xs\:jc-evenly   { --justify-content:space-evenly; }
+    .xs\:jc-stretch  { --justify-content:stretch; }
+    .xs\:jc-safe     { --justify-content:safe center; }
+    .xs\:jc_safe     { --justify-content:unsafe center; }
+
+    /* ========== ITEM ========== */
+    .xs\:ai-center   { --align-items:center; }
+    .xs\:ai-start    { --align-items:start; }
+    .xs\:ai-end      { --align-items:end; }
+    .xs\:ai_start    { --align-items:flex-start; }
+    .xs\:ai_end      { --align-items:flex-end; }
+    .xs\:ai-self     { --align-items:self-start; }
+    .xs\:ai_self     { --align-items:self-end; }
+    .xs\:ai-line     { --align-items:first baseline; }
+    .xs\:ai_line     { --align-items:last baseline; }
+    .xs\:ai-stretch  { --align-items:stretch; }
+    .xs\:ai-safe     { --align-items:safe center; }
+    .xs\:ai_safe     { --align-items:unsafe center; }
+            
+    /* ========== COLUMNS SIZE ========== */
+    .xs\:cols-full > *, .df > .xs\:col-full { --flex-basis:100%; }
+    .xs\:cols-fill > *, .df > .xs\:col-fill { --flex-grow:1; --flex-shrink:1; --flex-basis:0; }
+    .xs\:cols-auto > *, .df > .xs\:col-auto { --flex-grow:0; --flex-shrink:0; --flex-basis:auto; }
+
+    .xs\:cols-1 > *,     .df > .xs\:col-1   { --column:1; }
+    .xs\:cols-2 > *,     .df > .xs\:col-2   { --column:2; }
+    .xs\:cols-3 > *,     .df > .xs\:col-3   { --column:3; }
+    .xs\:cols-4 > *,     .df > .xs\:col-4   { --column:4; }
+    .xs\:cols-5 > *,     .df > .xs\:col-5   { --column:5; }
+    .xs\:cols-6 > *,     .df > .xs\:col-6   { --column:6; }
+    .xs\:cols-7 > *,     .df > .xs\:col-7   { --column:7; }
+    .xs\:cols-8 > *,     .df > .xs\:col-8   { --column:8; }
+    .xs\:cols-9 > *,     .df > .xs\:col-9   { --column:9; }
+    .xs\:cols-10 > *,    .df > .xs\:col-10  { --column:10; }
+    .xs\:cols-11 > *,    .df > .xs\:col-11  { --column:11; }
+    .xs\:cols-12 > *,    .df > .xs\:col-12  { --column:12; }
+}
