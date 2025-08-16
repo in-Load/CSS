@@ -112,6 +112,7 @@
 
 /* ========== COLUMN ========== */
 .df > * {
+    --flex-basis:auto;
     flex-grow:var(--flex-grow);
     flex-shrink:var(--flex-shrink);
     flex-basis:var(--flex-basis);
