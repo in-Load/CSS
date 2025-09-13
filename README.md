@@ -6,7 +6,7 @@
 
 ## 🚀 Usage
 
-Explain briefly how to use your project:
+Include the CSS in your project:
 
 ```html
 <link rel="stylesheet" href="https://in-load.github.io/CSS/{fileName}.css">
