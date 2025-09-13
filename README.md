@@ -21,8 +21,8 @@ Replace ```{fileName}``` with the file you want to use.
 - **Copyright**: © 2025 Hold'inCorp.
 - **License**: [Apache 2.0](./LICENSE)
 
-Hold'inCorp. is the sole owner of the intellectual property.
-inLoad is responsible for development and technical contributions.
+**Hold'inCorp.** is the sole owner of the intellectual property.
+**inLoad** is responsible for development and technical contributions.
 
 ---
 
