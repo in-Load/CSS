@@ -20,6 +20,7 @@
         );
     outline:var(--debug-border) dashed hsl(var(--debug-hsl) / 0.80);
     mix-blend-mode: multiply;
+    border: var(--debug-border) solid transparent;
 }
 [debug] *:nth-child(even) { --debug-orientation: -45deg; }
 [debug] *:nth-child(1) { --i: 1; }
