@@ -8,7 +8,7 @@
 :is([debug="full"], [debug] *),
 :is([debug="full"], [debug] *)::before,
 :is([debug="full"], [debug] *)::after {
-    --debug-border:0.1rem;
+    --debug-border:0.25rem;
     --debug-hsl: calc(var(--i,0) * 50) 85% 55%;
     --debug-color: hsl(var(--debug-hsl) / 0.25);
 
