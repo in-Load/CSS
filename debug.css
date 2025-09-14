@@ -23,6 +23,11 @@
     mix-blend-mode: multiply;
     pointer-events: none;
 }
+:is([debug="full"], [debug] *):empty,
+:is([debug="full"], [debug] *):empty::before,
+:is([debug="full"], [debug] *):empty::after {
+    border: calc(var(--debug-border) * 3) solid transparent !important;
+}
 [debug] *:nth-child(even) { --debug-orientation: -45deg; }
 [debug] *:nth-child(1) { --i: 1; }
 [debug] *:nth-child(2) { --i: 2; }
