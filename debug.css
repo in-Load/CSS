@@ -8,18 +8,18 @@
 :is([debug="full"], [debug] *),
 :is([debug="full"], [debug] *)::before,
 :is([debug="full"], [debug] *)::after {
-    --debug-border:0.15rem;
+    --debug-border: 0.15rem;
     --debug-hsl: calc(var(--i,0) * 50) 85% 55%;
     --debug-color: hsl(var(--debug-hsl) / 0.25);
 
     background-image: 
         repeating-linear-gradient(
             var(--debug-orientation, 45deg),
-            hsl(var(--debug-hsl) / 0.45) 0rem                   var(--debug-border),
-            hsl(var(--debug-hsl) / 0.10) var(--debug-border)    calc(var(--debug-border) * 3)
+            hsl(var(--debug-hsl) / 0.45) 0rem var(--debug-border),
+            hsl(var(--debug-hsl) / 0.10) var(--debug-border) calc(var(--debug-border) * 3)
         );
-    outline:var(--debug-border) dashed hsl(var(--debug-hsl) / 0.80);
-    outline-offset: calc(var(--debug-border) * 3);
+    outline: var(--debug-border) dashed hsl(var(--debug-hsl) / 0.80);
+    outline-offset: var(--debug-border);
     mix-blend-mode: multiply;
     pointer-events: none;
 }
