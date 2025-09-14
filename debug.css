@@ -18,6 +18,8 @@
             hsl(var(--debug-hsl) / 0.45) 0rem var(--debug-border),
             hsl(var(--debug-hsl) / 0.10) var(--debug-border) calc(var(--debug-border) * 3)
         );
+    background-attachment: fixed;
+    
     outline: var(--debug-border) dashed hsl(var(--debug-hsl) / 0.80);
     outline-offset: var(--debug-border);
     mix-blend-mode: multiply;
