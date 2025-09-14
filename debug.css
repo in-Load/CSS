@@ -8,7 +8,7 @@
 :is([debug="full"], [debug] *),
 :is([debug="full"], [debug] *)::before,
 :is([debug="full"], [debug] *)::after {
-    --debug-border:0.25rem;
+    --debug-border:0.15rem;
     --debug-hsl: calc(var(--i,0) * 50) 85% 55%;
     --debug-color: hsl(var(--debug-hsl) / 0.25);
 
@@ -19,8 +19,9 @@
             hsl(var(--debug-hsl) / 0.10) var(--debug-border)    calc(var(--debug-border) * 3)
         );
     outline:var(--debug-border) dashed hsl(var(--debug-hsl) / 0.80);
+    outline-offset: calc(var(--debug-border) * 3);
     mix-blend-mode: multiply;
-    border: var(--debug-border) solid transparent;
+    pointer-events: none;
 }
 [debug] *:nth-child(even) { --debug-orientation: -45deg; }
 [debug] *:nth-child(1) { --i: 1; }
