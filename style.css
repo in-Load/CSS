@@ -40,4 +40,5 @@ menu { padding:0em; margin:0em; list-style:none; }
 .tt-capit { text-transform:capitalize; }
 
 .fw-lighter { font-weight:lighter; }
+.fw-normal  { font-weight:normal; }
 .fw-bold    { font-weight:bold; }
