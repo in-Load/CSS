@@ -26,6 +26,10 @@
     --EM :  1em;
     --REM : 1rem;
 
+    --border-size : calc(var(--mini) / 2);
+    --border_EM : calc(var(--EM) * var(--border-size));
+    --border_REM : calc(var(--REM) * var(--border-size));
+
     --mini_EM :     calc(var(--EM) * var(--mini));
     --tiny_EM :     calc(var(--EM) * var(--tiny));
     --small_EM :    calc(var(--EM) * var(--small));
