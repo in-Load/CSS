@@ -84,7 +84,7 @@
 * @link https://developer.mozilla.org/docs/Web/CSS/@media/prefers-color-scheme
 */
 @media (prefers-color-scheme:light) {
-    html:not([inverted]) {
+    html:not([inverted],[noPCS]) {
         --dark  :     8   8   8;
         --light :   248 249 250;
         --black :     0   0   0;
@@ -92,7 +92,7 @@
     }
 }
 @media (prefers-color-scheme:dark) {
-    html:not([inverted]) {
+    html:not([inverted],[noPCS]) {
         --dark  :   248 249 250;
         --light :     8   8   8;
         --black :   255 255 255;
