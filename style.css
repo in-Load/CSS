@@ -35,6 +35,7 @@ menu { padding:0em; margin:0em; list-style:none; }
 .ta-end     { text-align:end; }
 .ta-start   { text-align:start; }
 
+.tt-none { text-transform:none; }
 .tt-upper { text-transform:uppercase; }
 .tt-lower { text-transform:lowercase; }
 .tt-capit { text-transform:capitalize; }
