@@ -10,7 +10,7 @@
 dialog:not([open]) { display:none; }
 dialog[open] ~ * { filter:blur(var(--mini_EM)); }
 dialog::backdrop { background-color:rgb(var(--dark) / var(--small)); cursor:not-allowed; }
-dialog { --border-dialog:var(--border_EM) solid color-mix(in srgb, currentColor 10%, transparent); z-index:1000; background-color:white; border:none; max-height:calc(100% - 3em); padding:0em; margin:auto; position:absolute; top:50%; bottom:50%; overflow:hidden; display:flex; flex-direction:column; border-radius:var(--small_EM); }
+dialog { --border-dialog:var(--border_EM) solid color-mix(in srgb, currentColor 10%, transparent); z-index:1000; background-color:white; border:none; max-height:calc(100% - 3em); padding:0em; margin:auto; position:absolute; top:50%; bottom:50%; overflow:hidden; display:flex; flex-direction:column; border-radius:var(--tiny_EM); }
 dialog > * { padding:var(--large_EM); }
 dialog > header:first-child { border-bottom:var(--border-dialog); }
 dialog > [content] { padding:0em var(--large_EM); margin:var(--large_EM) 0em; overflow:hidden auto; }
