@@ -1,0 +1,13 @@
+@charset "UTF-8";
+/**
+ * @updated 25.11.18
+ * @copyright 2025 Hold'inCorp.
+ * @author inLoad
+ * @license Apache-2.0 ./LICENSE
+ *
+ * @see  https://developer.mozilla.org/docs/Web/CSS/@charset
+ */
+dialog:not([open]) { display:none; }
+dialog[open] ~ * { filter:blur(var(--mini_EM)); }
+dialog::backdrop { background-color:rgb(var(--dark) / var(--tiny)); cursor:not-allowed; }
+dialog { background-color:rgb(var(--white)); border:none; max-height:calc(100% - 3em); margin:auto; }
