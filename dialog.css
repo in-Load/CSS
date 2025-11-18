@@ -10,4 +10,4 @@
 dialog:not([open]) { display:none; }
 dialog[open] ~ * { filter:blur(var(--mini_EM)); }
 dialog::backdrop { background-color:rgb(var(--dark) / var(--small)); cursor:not-allowed; }
-dialog { z-index:1000; background-color:white; border:none; max-height:calc(100% - 3em); margin:auto; position:absolute; top:50%; bottom:50%; }
+dialog { z-index:1000; background-color:white; border:none; max-height:calc(100% - 3em); margin:auto; position:absolute; top:50%; bottom:50%; overflow:hidden auto; }
