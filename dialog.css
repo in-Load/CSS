@@ -13,5 +13,6 @@ dialog::backdrop { background-color:rgb(var(--dark) / var(--small)); cursor:not-
 dialog { --border-dialog:var(--border_EM) solid color-mix(in srgb, currentColor 10%, transparent); z-index:1000; background-color:white; border:none; max-height:calc(100% - 3em); padding:0em; margin:auto; position:absolute; top:50%; bottom:50%; overflow:hidden; display:flex; flex-direction:column; border-radius:var(--tiny_EM); }
 dialog > * { padding:var(--large_EM); }
 dialog > header:first-child { border-bottom:var(--border-dialog); }
-dialog > [content] { padding:0em var(--large_EM); margin:var(--large_EM) 0em; overflow:hidden auto; }
+dialog > [content] { padding:0em var(--large_EM); margin:var(--large_EM) 0em; }
+dialog > *:not(header,footer) { overflow:hidden auto; }
 dialog > footer:last-child { border-top:var(--border-dialog); }
