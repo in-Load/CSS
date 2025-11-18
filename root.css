@@ -26,7 +26,7 @@
     --EM :  1em;
     --REM : 1rem;
 
-    --border-size : calc(var(--mini) / 2);
+    --border-size : calc(var(--mini) / 3);
     --border_EM : calc(var(--EM) * var(--border-size));
     --border_REM : calc(var(--REM) * var(--border-size));
 
