@@ -9,7 +9,8 @@
 html { color:rgb(var(--mode-color)); font-family:sans-serif; font-size:18px; font-weight:lighter; }
 
 body { margin:0em; background-color:rgb(var(--mode-bgc)); }
-nav.header { padding:1em 0em; border-bottom-width:var(--border_EM); border-bottom-style:solid; border-bottom-color:rgb(var(--mode-color) / var(--mini)); background-color:rgb(var(--white)); }
+nav:has( > [class*="container"]) { padding:1em 0em; } 
+nav.header { padding:1em; border-bottom-width:var(--border_EM); border-bottom-style:solid; border-bottom-color:rgb(var(--mode-color) / var(--mini)); background-color:rgb(var(--white)); }
 nav.sticky { position:sticky; width:100%; top:0em; left:0em; z-index:100; }
 
 body > * *:first-child { margin-top:0em; }
