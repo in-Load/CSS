@@ -43,6 +43,7 @@ menu { padding:0em; margin:0em; list-style:none; }
 .fw-lighter { font-weight:lighter; }
 .fw-normal  { font-weight:normal; }
 .fw-bold    { font-weight:bold; }
+.fw-bolder  { font-weight:bolder; }
 
 .fs-italic { font-style:italic; }
 .fs-normal { font-style:normal; }
